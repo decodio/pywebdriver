@@ -1,0 +1,27 @@
+#!/bin/bash
+set -e
+
+USERNAME=pywebdriver
+GROUP=usbusers
+
+# TODO create deb packages for these dependencies
+echo "Installing python dependencies via pip"
+pip install jcconv pif Flask-cors pyusb Pillow
+
+echo "Configure pywebdriver user and group"
+groupadd -f $GROUP
+if id -u $USERNAME &>/dev/null; then
+    echo "$USERNAME already exists"
+else
+    adduser --no-create-home --system $USERNAME
+fi
+adduser $USERNAME $GROUP
+
+echo "Restarting udev"
+restart udev
+
+echo "Starting pywebdriver supervisor service"
+
+supervisorctl add pywebdriver
+sleep 1
+supervisorctl status pywebdriver
