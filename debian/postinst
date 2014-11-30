@@ -22,6 +22,7 @@ restart udev
 
 echo "Starting pywebdriver supervisor service"
 
+supervisorctl reread
 supervisorctl add pywebdriver
 sleep 1
 supervisorctl status pywebdriver
