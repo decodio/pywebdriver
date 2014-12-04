@@ -11,7 +11,7 @@ Homepage: https://github.com/akretion/pywebdriver
 
 Package: pywebdriver
 Architecture: all
-Depends: adduser, supervisor, python, python-flask, python-flask-babel, python-simplejson,
+Depends: adduser, supervisor, python, python-flask, python-flask-babel, python-simplejson, python-netifaces
  ${misc:Depends},
 Description: Python Web Services to communicate wih Devices
  This Software installs Web Services to allow easy communications with some

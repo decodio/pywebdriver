@@ -6,7 +6,8 @@ GROUP=usbusers
 
 # TODO create deb packages for these dependencies
 echo "Installing python dependencies via pip"
-pip install jcconv pif Flask-cors pyusb Pillow
+pip install jcconv pif Flask-cors Pillow
+pip install --pre pyusb
 
 echo "Configure pywebdriver user and group"
 groupadd -f $GROUP
