@@ -3,7 +3,6 @@ include VERSION
 include README.md
 include requirement.txt
 recursive-include config *
-recursive-include libraries *
-recursive-include templates *
-recursive-include static *
-recursive-include translations *
+recursive-include pywebdriver/templates *
+recursive-include pywebdriver/translations/fr/LC_MESSAGES *
+recursive-include pywebdriver/static/images *

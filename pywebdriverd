@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 from pywebdriver import app, config, drivers
 
 def main():
