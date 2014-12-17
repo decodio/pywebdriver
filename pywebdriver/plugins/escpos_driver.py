@@ -137,6 +137,29 @@ class EscposDriver(Thread):
         for device in self.supported_devices():
             if usb.core.find(idVendor=device['vendor'], idProduct=device['product']) != None:
                 connected.append(device)
+        #GK+
+        try:
+            ser = printer.Serial()
+            if ser.device is not None:
+                connected.append({
+                    'vendor': 'SERIAL',
+                    'product': ser.devfile,
+                    'name': 'Serial Generic Epson'})
+                self.device.close()
+        except:
+            pass
+
+        try:
+            fil = printer.File()
+            if fil.device is not None:
+                connected.append({
+                    'vendor': 'FILE',
+                    'product': fil.tmp_file,
+                    'name': 'FILE Fake Generic parallel'})
+                self.device.close()
+        except:
+            pass
+        #GK-
         return connected
 
     def lockedstart(self):
@@ -152,6 +175,12 @@ class EscposDriver(Thread):
             if len(printers) > 0:
                 self.vendor_product = str(printers[0]['vendor']) + '_' + str(printers[0]['product'])
                 self.set_status('connected', _(u'Connected to %s') %(printers[0]['name']))
+                #GK+
+                if printers[0]['vendor'] == 'SERIAL':
+                    return printer.Serial()
+                if printers[0]['vendor'] == 'FILE':
+                    return printer.File()
+                #GK-
                 return printer.Usb(printers[0]['vendor'], printers[0]['product'])
             else:
                 self.vendor_product = None

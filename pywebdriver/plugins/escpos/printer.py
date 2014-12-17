@@ -105,6 +105,44 @@ class Serial(Escpos):
         if self.device is not None:
             self.device.close()
 
+class File(Escpos):
+    """ Define File printer """
+
+    def __init__(self, tmp_file="/tmp/fake_pos_print", port="parport0"):
+        """
+        @param devfile  : Device file under dev filesystem
+        @param baudrate : Baud rate for serial transmission
+        @param bytesize : Serial buffer size
+        @param timeout  : Read/Write timeout
+        """
+        self.tmp_file  = tmp_file
+        self.port = port
+        self.open()
+
+
+    def open(self):
+        """ Setup serial port and set is as escpos device """
+        #self.device = serial.Serial(port=self.devfile, baudrate=self.baudrate, bytesize=self.bytesize, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE, timeout=self.timeout, dsrdtr=True)
+        os.path.exists(self.tmp_file) and os.remove(self.tmp_file)
+        self.device = open(self.tmp_file, "wb")
+        if self.device is not None:
+            print "Fake printer enabled"
+        else:
+            print "Unable to open Fake printer on: %s" % self.tmp_file
+
+
+    def _raw(self, msg):
+        """ Print any command sent in raw format """
+        print msg
+        self.device.write(msg)
+
+
+    def __del__(self):
+        """ Close Serial interface """
+        return None
+        if self.device is not None:
+            self.device.close()
+            print "Fake printer closed"
 
 
 class Network(Escpos):
