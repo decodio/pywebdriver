@@ -231,6 +231,7 @@ class EscposDriver(Thread):
                         printer.cut()
                 elif task == 'xml_receipt':
                     if timestamp >= time.time() - 1 * 60 * 60:
+                        print data
                         printer.receipt(data)
                 elif task == 'cashbox':
                     if timestamp >= time.time() - 12:
