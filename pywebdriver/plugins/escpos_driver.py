@@ -176,9 +176,9 @@ class EscposDriver(Thread):
                 self.vendor_product = str(printers[0]['vendor']) + '_' + str(printers[0]['product'])
                 self.set_status('connected', _(u'Connected to %s') %(printers[0]['name']))
                 #GK+
-                if printers[0]['vendor'] == 'SERIAL':
+                if printers[0]['vendor'] == 'SERIALx':
                     return printer.Serial()
-                if printers[0]['vendor'] == 'FILE':
+                if printers[0]['vendor'] == 'FILEx':
                     return printer.File()
                 #GK-
                 return printer.Usb(printers[0]['vendor'], printers[0]['product'])
