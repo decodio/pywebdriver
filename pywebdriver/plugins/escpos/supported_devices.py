@@ -9,5 +9,6 @@ device_list = [
     { 'vendor' : 0x04b8, 'product' : 0x0e15, 'name' : 'Epson TM-T20II' },
     { 'vendor' : 0x04b8, 'product' : 0x0e15, 'name' : 'Epson TM-T20II' },
     { 'vendor' : 0x1504, 'product' : 0x0006, 'name' : 'BIXOLON SRP-350plus' },
+    { 'vendor' : 0x0525, 'product' : 0xa700, 'name' : 'Netchip Tech., Inc. MicroPOS WTP-100ESC' },
 ]
 
