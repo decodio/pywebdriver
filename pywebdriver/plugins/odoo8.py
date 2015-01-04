@@ -47,6 +47,13 @@ def status_json():
     return jsonify(jsonrpc='2.0', result=statuses)
 
 
+@app.route('/hw_proxy/open_cashbox', methods=['POST', 'GET', 'PUT', 'OPTIONS'])
+@cross_origin(headers=['Content-Type'])
+def open_cashbox(self):
+    # _logger.info('ESC/POS: OPEN CASHBOX')
+    drivers['escpos'].push_task('cashbox')
+
+
 @app.route(
     '/hw_proxy/print_xml_receipt',
     methods=['POST', 'GET', 'PUT', 'OPTIONS'])

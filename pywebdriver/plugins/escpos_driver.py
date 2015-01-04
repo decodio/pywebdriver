@@ -138,27 +138,27 @@ class EscposDriver(Thread):
             if usb.core.find(idVendor=device['vendor'], idProduct=device['product']) != None:
                 connected.append(device)
         #GK+
-        try:
-            ser = printer.Serial()
-            if ser.device is not None:
-                connected.append({
-                    'vendor': 'SERIAL',
-                    'product': ser.devfile,
-                    'name': 'Serial Generic Epson'})
-                self.device.close()
-        except:
-            pass
+        #try:
+        #    ser = printer.Serial()
+        #    if ser.device is not None:
+        #        connected.append({
+        #            'vendor': 'SERIAL',
+        #            'product': ser.devfile,
+        #            'name': 'Serial Generic Epson'})
+        #        self.device.close()
+        #except:
+        #    pass
 
-        try:
-            fil = printer.File()
-            if fil.device is not None:
-                connected.append({
-                    'vendor': 'FILE',
-                    'product': fil.tmp_file,
-                    'name': 'FILE Fake Generic parallel'})
-                self.device.close()
-        except:
-            pass
+        #try:
+        #    fil = printer.File()
+        #    if fil.device is not None:
+        #        connected.append({
+        #            'vendor': 'FILE',
+        #            'product': fil.tmp_file,
+        #            'name': 'FILE Fake Generic parallel'})
+        #        self.device.close()
+        #except:
+        #    pass
         #GK-
         return connected
 
@@ -176,10 +176,10 @@ class EscposDriver(Thread):
                 self.vendor_product = str(printers[0]['vendor']) + '_' + str(printers[0]['product'])
                 self.set_status('connected', _(u'Connected to %s') %(printers[0]['name']))
                 #GK+
-                if printers[0]['vendor'] == 'SERIALx':
-                    return printer.Serial()
-                if printers[0]['vendor'] == 'FILEx':
-                    return printer.File()
+                #if printers[0]['vendor'] == 'SERIALx':
+                #    return printer.Serial()
+                #if printers[0]['vendor'] == 'FILE':
+                #    return printer.File()
                 #GK-
                 return printer.Usb(printers[0]['vendor'], printers[0]['product'])
             else:
@@ -231,7 +231,7 @@ class EscposDriver(Thread):
                         printer.cut()
                 elif task == 'xml_receipt':
                     if timestamp >= time.time() - 1 * 60 * 60:
-                        print data
+                        # print data
                         printer.receipt(data)
                 elif task == 'cashbox':
                     if timestamp >= time.time() - 12:
