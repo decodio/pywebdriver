@@ -73,5 +73,5 @@ def print_xml_receipt_json():
 @cross_origin(headers=['Content-Type'])
 def log_json():
     arguments = request.json['params']['arguments']
-    print (' '.join(str(v) for v in arguments))
+    # print (' '.join(str(v) for v in arguments))
     return jsonify(jsonrpc='2.0', result=True)
