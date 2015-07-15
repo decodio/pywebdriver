@@ -210,11 +210,13 @@ else:
 
         return jsonify(jsonrpc='2.0', result=True)
 
-    @app.route('/print_status_deprec.html', methods=['GET'])
+    """
+    @app.route('/print_status.html', methods=['GET'])
     @cross_origin()
     def print_status_http():
         driver.push_task('printstatus')
         return render_template('print_status.html')
+    """    
 
     @app.route('/hw_proxy/open_cashbox', methods=['POST', 'GET', 'PUT', 'OPTIONS'])
     @cross_origin(headers=['Content-Type'])
