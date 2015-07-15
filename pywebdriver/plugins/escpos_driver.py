@@ -210,7 +210,7 @@ else:
 
         return jsonify(jsonrpc='2.0', result=True)
 
-    @app.route('/print_status.html', methods=['GET'])
+    @app.route('/print_status_deprec.html', methods=['GET'])
     @cross_origin()
     def print_status_http():
         driver.push_task('printstatus')
